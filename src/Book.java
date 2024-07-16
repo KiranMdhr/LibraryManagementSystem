@@ -1,15 +1,15 @@
 public class Book {
     private int bid;
-    private String bookname;
+    private String bookName;
     private String authorName;
     private String genre;
     private boolean isAvailable;
 
 
 
-    public Book(int bid, String bookname, String authorName, String genre,int months){
+    public Book(int bid, String bookName, String authorName, String genre,int months){
         this.bid = bid;
-        this.bookname = bookname;
+        this.bookName = bookName;
         this.authorName = authorName;
         this.genre = genre;
         this.isAvailable = true;
@@ -22,7 +22,7 @@ public class Book {
     }
 
     public String getBookName(){
-        return bookname;
+        return bookName;
     }
     public String getAuthorName(){
         return authorName;
@@ -33,7 +33,15 @@ public class Book {
     public boolean getIsAvailable(){
         return isAvailable;
     }
-
+public void setBookName(String bookName){
+        this.bookName = bookName;
+}
+    public void setAuthorName(String authorName){
+        this.authorName = authorName;
+    }
+    public void setGenre(String genre ){
+        this.genre = genre;
+    }
 
 
     public void setIsAvailable(boolean isAvailable){
@@ -42,6 +50,6 @@ public class Book {
 
 
     public String toString(){
-        return "BookName : " + bookname + "AuthorName : " +authorName + "Genre :"+ genre + "isavailable"+isAvailable ;
+        return "BookName : " + bookName + "AuthorName : " +authorName + "Genre :"+ genre + "isavailable"+isAvailable ;
     }
 }

@@ -59,5 +59,9 @@ public class Main {
         System.out.println(u1.getBorrowedBooks());
 
         l.pricing(u1,4);
+        l.UpdateBook(102,"hello","kiran","comedy");
+
+        l.viewAll();
+
     }
 }

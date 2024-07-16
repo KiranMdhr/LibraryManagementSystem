@@ -105,9 +105,20 @@ public class Library {
 
 
     }
+    public void UpdateBook(int id ,String bookname,String aname,String g){
+        for(Book b : books){
+            if(b.getBid() == id){
+                b.setBookName(bookname) ;
+                b.setAuthorName(aname); ;
+                b.setGenre(g);
+            }
+        }
+        System.out.println("ID not found");
+
+    }
 
 public void pricing(User user,int month){
-      System.out.println( user.getPricing() * month);
+      System.out.println("The price of the book is" +  user.getPricing() * month);
 
 }
 }
