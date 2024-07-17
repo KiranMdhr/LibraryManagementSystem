@@ -50,6 +50,7 @@ public class Library {
         }
 
     }
+
     public void viewAllUsers() {
         if (users.isEmpty()) {
             System.out.println("No Users available");
@@ -96,6 +97,7 @@ public class Library {
         }
         System.out.println("no book available of that name to delete it");
     }
+
     public void removeUser(String name) {
         Iterator<User> iterator = users.iterator();
         while (iterator.hasNext()) {
@@ -128,40 +130,55 @@ public class Library {
         }
 
 
-
     }
 
-    public void UpdateBook(int id ,String bookname,String aname,String g){
-        for(Book b : books){
-            if(b.getBid() == id){
-                b.setBookName(bookname) ;
-                b.setAuthorName(aname); ;
+    public void UpdateBook(int id, String bookname, String aname, String g) {
+        for (Book b : books) {
+            if (b.getBid() == id) {
+                b.setBookName(bookname);
+                b.setAuthorName(aname);
+                ;
                 b.setGenre(g);
             }
         }
         System.out.println("ID not found");
 
     }
-    public void updateUser(int id ,String username,int contact,String email, int balance){
-       boolean userFound = false;
-        for(User u : users){
-            if(u.getUid() == id){
-                u.setUname(username) ;
-                u.setContact(contact); ;
-               u.setEmail(email);
-               u.setBalance(balance);
-               userFound = true;
+
+    public void updateUser(int id, String username, int contact, String email, int balance) {
+        boolean userFound = false;
+        for (User u : users) {
+            if (u.getUid() == id) {
+                u.setUname(username);
+                u.setContact(contact);
+                ;
+                u.setEmail(email);
+                u.setBalance(balance);
+                userFound = true;
                 System.out.println("User successfully updated");
             }
 
         }
-        if(!userFound){
+        if (!userFound) {
             System.out.println("ID not found");
         }
     }
 
-public void pricing(User user,int month){
-      System.out.println("The price of the book is" +  user.getPricing() * month);
+    public void lostBook(User u) {
+        int currentBalance  = u.getBalance();
+        int deduction = 500;
+if(currentBalance < 500){
 
+    u.setBalance(currentBalance - deduction);
+    System.out.println("You don't have sufficient balance please recharge");
 }
+else{
+    u.setBalance(currentBalance - deduction);
+}
+    }
+
+    public void pricing(User user, int month) {
+        System.out.println("The price of the book is" + user.getPricing() * month);
+
+    }
 }

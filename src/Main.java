@@ -68,9 +68,12 @@ public class Main {
 //        l.viewAllUsers();
 
         l.updateUser(1,"ramesh",98456223,"ramesh@hotmail.com",100);
+
         l.viewAllUsers();
 
-
+//l.lostBook(u2);
+l.lostBook(u1);
+l.viewAllUsers();
 
     }
 }
