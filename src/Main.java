@@ -27,14 +27,15 @@ public class Main {
             System.out.println("Enter no 2 to remove the User");
             System.out.println("Enter no 3 to update the User");
             System.out.println("Enter no 4 to view all  the Users");
-            System.out.println("Enter no 5 to add the Book");
-            System.out.println("Enter no 6 to remove the Book");
-            System.out.println("Enter no 7 to update the Book");
-            System.out.println("Enter no 8 to search the book by it's Genre");
-            System.out.println("Enter no 9 to view all  the Books");
-            System.out.println("Enter no 10 to borrow  the Book");
-            System.out.println("Enter no 11 to report lost of the Book");
-            System.out.println("Enter no 12 to exit ");
+            System.out.println("Enter no 5 to search user by Name");
+            System.out.println("Enter no 6 to add the Book");
+            System.out.println("Enter no 7 to remove the Book");
+            System.out.println("Enter no 8 to update the Book");
+            System.out.println("Enter no 9 to search the book by it's Genre");
+            System.out.println("Enter no 10 to view all  the Books");
+            System.out.println("Enter no 11 to borrow  the Book");
+            System.out.println("Enter no 12 to report lost of the Book");
+            System.out.println("Enter no 13 to exit ");
 
 
             Scanner scanner = new Scanner(System.in);
@@ -83,6 +84,11 @@ public class Main {
                     l.viewAllUsers();
                     break;
                 case 5:
+                    System.out.println("Enter the name of the user you want to search");
+                    String searchBookName = scanner.next();
+                    l.searchUserByName(searchBookName);
+                    break;
+                case 6:
                     System.out.println("Enter the id of the book");
                     int bid = scanner.nextInt();
                     System.out.println("Enter the Book's name");
@@ -96,12 +102,12 @@ public class Main {
                     Book b = new Book(bid, bookName, authorName, genre, count);
                     l.addBook(b);
                     break;
-                case 6:
+                case 7:
                     System.out.println("Enter the name of the book you want to remove");
                     String removeName = scanner.nextLine();
                     l.removeUser(removeName);
                     break;
-                case 7:
+                case 8:
                     System.out.println("Enter the book id you want to update");
                     int updateBookId = scanner.nextInt();
                     scanner.nextLine();
@@ -113,15 +119,15 @@ public class Main {
                     String updatedGenre = scanner.nextLine();
                     l.updateBook(updateBookId, updatedBookName, updatedAuthorName, updatedGenre);
                     break;
-                case 8:
+                case 9:
                     System.out.println("Enter the genre you want to search");
                     String searchGenre = scanner.next();
                     l.searchByGenre(searchGenre);
                     break;
-                case 9:
+                case 10:
                     l.viewAll();
                     break;
-                case 10:
+                case 11:
                     System.out.println("Enter the name of the book you want to borrow");
                     String borrowBookName = scanner.next();
                     System.out.println("Enter the name of the user that wants to borrow the book");
@@ -134,7 +140,7 @@ public class Main {
                     break;
 
 
-                case 12:
+                case 13:
                     System.out.println("Exiting");
                     running = false;
                     break;

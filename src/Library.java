@@ -63,6 +63,21 @@ public class Library {
         }
 
     }
+    public void searchUserByName(String userName){
+        boolean found = false;
+        for(User u : users){
+            if(u.getUname().equalsIgnoreCase(userName)){
+                System.out.println(u);
+                found = true;
+            }
+
+
+        }
+        if(!found){
+            System.out.println("NO user Found of this name");
+        }
+
+    }
 
     public void searchByGenre(String g) {
 
