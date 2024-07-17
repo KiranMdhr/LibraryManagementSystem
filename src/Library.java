@@ -57,6 +57,7 @@ public class Library {
         } else {
             System.out.println("Users available are:");
             for (User u : users) {
+
                 System.out.println(u);
             }
         }
@@ -137,7 +138,7 @@ public class Library {
             if (b.getBid() == id) {
                 b.setBookName(bookname);
                 b.setAuthorName(aname);
-                ;
+
                 b.setGenre(g);
             }
         }
@@ -164,21 +165,32 @@ public class Library {
         }
     }
 
-    public void lostBook(User u) {
-        int currentBalance  = u.getBalance();
+    public void lostBook(User u, Book lostBook) {
+        int currentBalance = u.getBalance();
         int deduction = 500;
-if(currentBalance < 500){
+        if (currentBalance < 500) {
 
-    u.setBalance(currentBalance - deduction);
-    System.out.println("You don't have sufficient balance please recharge");
-}
-else{
-    u.setBalance(currentBalance - deduction);
-}
+            u.setBalance(currentBalance - deduction);
+            System.out.println("You don't have sufficient balance please recharge");
+            int currentBookCount = lostBook.getCount();
+            int finalCount = currentBookCount - 1;
+            for(Book b: books){
+                {
+                    if(b.getBookName().equalsIgnoreCase(lostBook.getBookName())){
+                        b.setCount(finalCount);
+                    }
+                }
+
+
+            }
+
+        } else {
+            u.setBalance(currentBalance - deduction);
+        }
     }
 
-    public void pricing(User user, int month) {
-        System.out.println("The price of the book is" + user.getPricing() * month);
-
-    }
+//    public void pricing(User user, int month) {
+//        System.out.println("The price of the book is" + user.getPricing() * month);
+//
+//    }
 }

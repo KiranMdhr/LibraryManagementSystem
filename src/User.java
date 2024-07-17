@@ -9,8 +9,8 @@ public class User {
     private String email;
     private boolean hasBooks;
     private ArrayList<Book> borrowedBooks;
-    private int pricing;
-    private int months;
+//    private int pricing;
+//    private int months;
     private int balance;
 
 
@@ -21,8 +21,8 @@ public class User {
         this.email = email;
         this.hasBooks = false;
         this.borrowedBooks = new ArrayList<>();
-        this.pricing = 200;
-        this.months = 1;
+//        this.pricing = 200;
+//        this.months = 1;
         this.balance = 1000;
 
 
@@ -61,12 +61,12 @@ public class User {
         return hasBooks;
     }
 
-    public int getPricing(){
-        return pricing;
-    }
-    public int getMonths(){
-        return months;
-    }
+//    public int getPricing(){
+//        return pricing;
+//    }
+//    public int getMonths(){
+//        return months;
+//    }
     public int getBalance(){
         return balance;
     }
@@ -81,6 +81,12 @@ public class User {
     }
 
     public String toString() {
-        return "User's Name : " + uname + "User Phone No : " + contact + "Email : " + email + " " + "balance :" + balance + "borrowedBooks" + borrowedBooks;
+        StringBuilder sb = new StringBuilder();
+        sb.append("User Details:\n");
+        sb.append("--------------------------------------------------------------------------------------------\n");
+        sb.append(String.format("%-20s | %-20s | %-20s | %-10s\n", "Name", "Contact", "Email", "Balance"));
+        sb.append("--------------------------------------------------------------------------------------------\n");
+        sb.append(String.format("%-20s | %-20d | %-20s | %-10d\n", uname, contact, email, balance));
+        return sb.toString();
     }
 }
