@@ -1,10 +1,12 @@
+import java.util.Scanner;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
 
 
-        System.out.println("Library Manangement System");
+        System.out.println("Library Management System");
         System.out.println("Please the no to perform the following activities ");
         System.out.println("Enter no 1 to add the User");
         System.out.println("Enter no 2 to remove the User");
@@ -18,39 +20,134 @@ public class Main {
         System.out.println("Enter no 9 to borrow  the Book");
         System.out.println("Enter no 10 to report lost of the Book");
 
-        Library l = new Library()
-        switch (){
-            case 1:  l.addUser();
+        Library l = new Library();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your choice:");
+        int userChoice = scanner.nextInt();
+        switch (userChoice) {
+            case 1:
+                System.out.println("Enter user ID:");
+                int id = scanner.nextInt();
+                scanner.nextLine();
 
+                System.out.println("Enter user name:");
+                String uname = scanner.nextLine();
+
+                System.out.println("Enter contact number:");
+                int contact = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.println("Enter email:");
+                String email = scanner.nextLine();
+
+                User u = new User(id, uname, contact, email);
+                l.addUser(u);
+                break;
+            case 2:
+                System.out.println("Enter the name of the user you want to remove:");
+                String name = scanner.nextLine();
+                l.removeUser(name);
+                break;
+            case 3:
+                System.out.println("Enter the id of the user you want to Update");//int id, String username, int contact, String email, int balance);
+                int uid = scanner.nextInt();
+                System.out.println("Enter the username you want to keep ");
+                String username = scanner.nextLine();
+
+                System.out.println("Enter the contact you want to keep");
+                int phone = scanner.nextInt();
+
+                System.out.println("Enter the email you want to keep");
+                String emailAdd = scanner.nextLine();
+                System.out.println("Enter the balance you want to keep");
+                int balance = scanner.nextInt();
+                l.updateUser(uid, username, phone, emailAdd, balance);
+
+                break;
+
+            case 4:
+                l.viewAllUsers();
+                break;
+
+            case 5:
+                //(int bid, String bookName, String authorName, String genre,int count)
+                System.out.println("Enter the id of the book");
+                int bid = scanner.nextInt();
+                System.out.println("Enter the Book's name");
+                String bookName = scanner.nextLine();
+                System.out.println("Enter the author's name");
+                String authorName = scanner.nextLine();
+                System.out.println("Enter the Genre of the Book");
+                String genre = scanner.nextLine();
+                System.out.println("Enter the no of books available");
+                int count = scanner.nextInt();
+                Book b = new Book(bid, bookName, authorName, genre, count);
+                l.addBook(b);
+                break;
+
+            case 6:
+                System.out.println("Enter the name of the book you want to remove");
+                String removeName = scanner.nextLine();
+                l.removeUser(removeName);
+                break;
+            case 7:
+
+                System.out.println("Enter the book name you want to update");
+                int updateBookId = scanner.nextInt();
+                System.out.println("Enter the book name  ");
+                String updatedBookName = scanner.nextLine();
+
+                System.out.println("Enter the author name");
+                String updatedAuthorName = scanner.nextLine();
+                System.out.println("Enter the Genre");
+                String updatedGenre = scanner.nextLine();
+
+                l.updateBook(updateBookId,updatedBookName,updatedAuthorName,updatedGenre);
+break;
+            case 8:
+                l.viewAll();
+                break;
+
+//                case 9:
+//                    System.out.println("Enter the name of the book you want to borrow");
+//                    String borrowBookName = scanner.nextLine();
+//
+//                    System.out.println("Enter the name of the user who wants to borrow the book");
+//                    User borrowingUser = scanner.nextLine();
+//
+//                    l.borrowBook(borrowBookName,borrowingUser);
+
+
+//            case 10:
+//                System.out.println();
         }
 
         User u1 = new User(1, "kiran", 78987978, "kiranmdhr9@gmail.com");
         User u2 = new User(2, "hari", 1234341, "hari12@gmail.com");
 
 
-        Book b1 = new Book(101, "To Kill a Mockingbird", "Harper Lee", "Fiction", 5, 12);
-        Book b2 = new Book(102, "1984", "George Orwell", "Dystopian", 5, 6);
-        Book b3 = new Book(103, "Pride and Prejudice", "Jane Austen", "Romance", 5, 24);
-        Book b4 = new Book(104, "The Great Gatsby", "F. Scott Fitzgerald", "Classic", 5, 18);
-        Book b5 = new Book(105, "Moby-Dick", "Herman Melville", "Adventure", 5, 9);
-        Book b6 = new Book(106, "War and Peace", "Leo Tolstoy", "Historical", 5, 36);
-        Book b7 = new Book(107, "The Catcher in the Rye", "J.D. Salinger", "Young Adult", 5, 5);
-        Book b8 = new Book(108, "The Hobbit", "J.R.R. Tolkien", "Fantasy", 5, 15);
-        Book b9 = new Book(109, "Fahrenheit 451", "Ray Bradbury", "Science Fiction", 5, 10);
-        Book b10 = new Book(110, "Jane Eyre", "Charlotte Bronte", "Classic", 5, 22);
-        Book b11 = new Book(111, "Crime and Punishment", "Fyodor Dostoevsky", "Psychological", 5, 27);
-        Book b12 = new Book(112, "Brave New World", "Aldous Huxley", "Dystopian", 5, 7);
-        Book b13 = new Book(113, "The Lord of the Rings", "J.R.R. Tolkien", "Fantasy", 5, 48);
-        Book b14 = new Book(114, "The Alchemist", "Paulo Coelho", "Adventure", 5, 11);
-        Book b15 = new Book(115, "Wuthering Heights", "Emily Bronte", "Gothic", 5, 14);
-        Book b16 = new Book(116, "Frankenstein", "Mary Shelley", "Horror", 5, 20);
-        Book b17 = new Book(117, "Animal Farm", "George Orwell", "Political Satire", 5, 8);
-        Book b18 = new Book(118, "The Odyssey", "Homer", "Epic", 5, 30);
-        Book b19 = new Book(119, "Don Quixote", "Miguel de Cervantes", "Classic", 5, 25);
-        Book b20 = new Book(120, "The Brothers Karamazov", "Fyodor Dostoevsky", "Philosophical", 5, 32);
+        Book b1 = new Book(101, "To Kill a Mockingbird", "Harper Lee", "Fiction", 5);
+        Book b2 = new Book(102, "1984", "George Orwell", "Dystopian", 5);
+        Book b3 = new Book(103, "Pride and Prejudice", "Jane Austen", "Romance", 5);
+        Book b4 = new Book(104, "The Great Gatsby", "F. Scott Fitzgerald", "Classic", 5);
+        Book b5 = new Book(105, "Moby-Dick", "Herman Melville", "Adventure", 5);
+        Book b6 = new Book(106, "War and Peace", "Leo Tolstoy", "Historical", 5);
+        Book b7 = new Book(107, "The Catcher in the Rye", "J.D. Salinger", "Young Adult", 5);
+        Book b8 = new Book(108, "The Hobbit", "J.R.R. Tolkien", "Fantasy", 5);
+        Book b9 = new Book(109, "Fahrenheit 451", "Ray Bradbury", "Science Fiction", 5);
+        Book b10 = new Book(110, "Jane Eyre", "Charlotte Bronte", "Classic", 5);
+        Book b11 = new Book(111, "Crime and Punishment", "Fyodor Dostoevsky", "Psychological", 5);
+        Book b12 = new Book(112, "Brave New World", "Aldous Huxley", "Dystopian", 5);
+        Book b13 = new Book(113, "The Lord of the Rings", "J.R.R. Tolkien", "Fantasy", 5);
+        Book b14 = new Book(114, "The Alchemist", "Paulo Coelho", "Adventure", 5);
+        Book b15 = new Book(115, "Wuthering Heights", "Emily Bronte", "Gothic", 5);
+        Book b16 = new Book(116, "Frankenstein", "Mary Shelley", "Horror", 5);
+        Book b17 = new Book(117, "Animal Farm", "George Orwell", "Political Satire", 5);
+        Book b18 = new Book(118, "The Odyssey", "Homer", "Epic", 5);
+        Book b19 = new Book(119, "Don Quixote", "Miguel de Cervantes", "Classic", 5);
+        Book b20 = new Book(120, "The Brothers Karamazov", "Fyodor Dostoevsky", "Philosophical", 5);
 
 
-        Library l = new Library();
         l.addUser(u1);
         l.addUser(u2);
         l.addBook(b1);

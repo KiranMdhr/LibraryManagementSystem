@@ -8,12 +8,13 @@ public class Book {
 
 
 
-    public Book(int bid, String bookName, String authorName, String genre,int count,int months){
+    public Book(int bid, String bookName, String authorName, String genre,int count){
         this.bid = bid;
         this.bookName = bookName;
         this.authorName = authorName;
         this.genre = genre;
         this.count = count;
+
         this.isAvailable = true;
 
 

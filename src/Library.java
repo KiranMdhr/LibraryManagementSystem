@@ -133,7 +133,7 @@ public class Library {
 
     }
 
-    public void UpdateBook(int id, String bookname, String aname, String g) {
+    public void updateBook(int id, String bookname, String aname, String g) {
         for (Book b : books) {
             if (b.getBid() == id) {
                 b.setBookName(bookname);
