@@ -113,37 +113,59 @@ public class Library {
         System.out.println("no book available of that name to delete it");
     }
 
-    public void borrowBook(String bookName, User user) {
+    public void borrowBook(String userName, String bookName,int duration) {
+        int finalCost = 200 * duration;
+//        int bookCount = b.getCount();
+     //   int availableBookCount = bookCount - 1;
+//        int calculatedCost = u.getBalance() - finalCost;
+
+for(User u : users){
+    if(u.getUname().equalsIgnoreCase(userName)){
         for (Book book : books) {
             if (book.getBookName().equalsIgnoreCase(bookName)) {
-                if (book.getIsAvailable()) {
-                    user.addBook(book);
+                if (book.getIsAvailable() && u.getBalance() > finalCost) {
+                    u.addBook(book);
                     System.out.println("book Borrowed");
-                    book.setIsAvailable(false);
+                    System.out.println("The amount is" + finalCost);
+                    u.setBalance(u.getBalance() - finalCost);
+                    System.out.println("Your payment hasbeen done");
+                    book.setCount(book.getCount() - 1);
+                    if(book.getCount() < 1)
+                    {book.setIsAvailable(false);}
                     break;
 
                 } else {
 
-                    System.out.println("Book not available");
+                    System.out.println("You cannot borrow the book");
                 }
+            }
+            else{
+                System.out.println("User not found");
             }
 
         }
+    }
+}
+
 
 
     }
 
-    public void updateBook(int id, String bookname, String aname, String g) {
+    public void updateBook(int id, String bookName, String authorName, String g) {
+        boolean found = false;
         for (Book b : books) {
             if (b.getBid() == id) {
-                b.setBookName(bookname);
-                b.setAuthorName(aname);
-
+                b.setBookName(bookName);
+                b.setAuthorName(authorName);
                 b.setGenre(g);
+                System.out.println("Updated successfully");
+                found = true;
+                break; // Exit the loop after updating the book
             }
         }
-        System.out.println("ID not found");
-
+        if (!found) {
+            System.out.println("ID not found");
+        }
     }
 
     public void updateUser(int id, String username, int contact, String email, int balance) {

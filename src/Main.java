@@ -5,132 +5,143 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-
-        System.out.println("Library Management System");
-        System.out.println("Please the no to perform the following activities ");
-        System.out.println("Enter no 1 to add the User");
-        System.out.println("Enter no 2 to remove the User");
-        System.out.println("Enter no 3 to update the User");
-        System.out.println("Enter no 4 to view all  the Users");
-        System.out.println("Enter no 5 to add the Book");
-        System.out.println("Enter no 6 to remove the Book");
-        System.out.println("Enter no 7 to update the Book");
-        System.out.println("Enter no 8 to search the book by it's Genre");
-        System.out.println("Enter no 8 to view all  the Books");
-        System.out.println("Enter no 9 to borrow  the Book");
-        System.out.println("Enter no 10 to report lost of the Book");
-
-        Library l = new Library();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your choice:");
-        int userChoice = scanner.nextInt();
-        switch (userChoice) {
-            case 1:
-                System.out.println("Enter user ID:");
-                int id = scanner.nextInt();
-                scanner.nextLine();
-
-                System.out.println("Enter user name:");
-                String uname = scanner.nextLine();
-
-                System.out.println("Enter contact number:");
-                int contact = scanner.nextInt();
-                scanner.nextLine();
-
-                System.out.println("Enter email:");
-                String email = scanner.nextLine();
-
-                User u = new User(id, uname, contact, email);
-                l.addUser(u);
-                break;
-            case 2:
-                System.out.println("Enter the name of the user you want to remove:");
-                String name = scanner.nextLine();
-                l.removeUser(name);
-                break;
-            case 3:
-                System.out.println("Enter the id of the user you want to Update");//int id, String username, int contact, String email, int balance);
-                int uid = scanner.nextInt();
-                System.out.println("Enter the username you want to keep ");
-                String username = scanner.nextLine();
-
-                System.out.println("Enter the contact you want to keep");
-                int phone = scanner.nextInt();
-
-                System.out.println("Enter the email you want to keep");
-                String emailAdd = scanner.nextLine();
-                System.out.println("Enter the balance you want to keep");
-                int balance = scanner.nextInt();
-                l.updateUser(uid, username, phone, emailAdd, balance);
-
-                break;
-
-            case 4:
-                l.viewAllUsers();
-                break;
-
-            case 5:
-                //(int bid, String bookName, String authorName, String genre,int count)
-                System.out.println("Enter the id of the book");
-                int bid = scanner.nextInt();
-                System.out.println("Enter the Book's name");
-                String bookName = scanner.nextLine();
-                System.out.println("Enter the author's name");
-                String authorName = scanner.nextLine();
-                System.out.println("Enter the Genre of the Book");
-                String genre = scanner.nextLine();
-                System.out.println("Enter the no of books available");
-                int count = scanner.nextInt();
-                Book b = new Book(bid, bookName, authorName, genre, count);
-                l.addBook(b);
-                break;
-
-            case 6:
-                System.out.println("Enter the name of the book you want to remove");
-                String removeName = scanner.nextLine();
-                l.removeUser(removeName);
-                break;
-            case 7:
-
-                System.out.println("Enter the book name you want to update");
-                int updateBookId = scanner.nextInt();
-                System.out.println("Enter the book name  ");
-                String updatedBookName = scanner.nextLine();
-
-                System.out.println("Enter the author name");
-                String updatedAuthorName = scanner.nextLine();
-                System.out.println("Enter the Genre");
-                String updatedGenre = scanner.nextLine();
-
-                l.updateBook(updateBookId,updatedBookName,updatedAuthorName,updatedGenre);
-break;
-            case 8:
-                l.viewAll();
-                break;
-
-//                case 9:
-//                    System.out.println("Enter the name of the book you want to borrow");
-//                    String borrowBookName = scanner.nextLine();
-//
-//                    System.out.println("Enter the name of the user who wants to borrow the book");
-//                    User borrowingUser = scanner.nextLine();
-//
-//                    l.borrowBook(borrowBookName,borrowingUser);
-
-
-//            case 10:
-//                System.out.println();
-        }
-
-        User u1 = new User(1, "kiran", 78987978, "kiranmdhr9@gmail.com");
-        User u2 = new User(2, "hari", 1234341, "hari12@gmail.com");
-
-
         Book b1 = new Book(101, "To Kill a Mockingbird", "Harper Lee", "Fiction", 5);
         Book b2 = new Book(102, "1984", "George Orwell", "Dystopian", 5);
         Book b3 = new Book(103, "Pride and Prejudice", "Jane Austen", "Romance", 5);
         Book b4 = new Book(104, "The Great Gatsby", "F. Scott Fitzgerald", "Classic", 5);
         Book b5 = new Book(105, "Moby-Dick", "Herman Melville", "Adventure", 5);
+
+        User u1 = new User(1, "kiran", 78987978, "kiranmdhr9@gmail.com");
+        User u2 = new User(2, "hari", 1234341, "hari12@gmail.com");
+        Library l = new Library();
+        l.addUser(u1);
+        l.addUser(u2);
+        l.addBook(b1);
+        l.addBook(b2);
+        boolean running = true;
+
+        while (running) {
+            System.out.println("Library Management System");
+            System.out.println("Please the no to perform the following activities ");
+            System.out.println("Enter no 1 to add the User");
+            System.out.println("Enter no 2 to remove the User");
+            System.out.println("Enter no 3 to update the User");
+            System.out.println("Enter no 4 to view all  the Users");
+            System.out.println("Enter no 5 to add the Book");
+            System.out.println("Enter no 6 to remove the Book");
+            System.out.println("Enter no 7 to update the Book");
+            System.out.println("Enter no 8 to search the book by it's Genre");
+            System.out.println("Enter no 9 to view all  the Books");
+            System.out.println("Enter no 10 to borrow  the Book");
+            System.out.println("Enter no 11 to report lost of the Book");
+            System.out.println("Enter no 12 to exit ");
+
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter your choice:");
+            int userChoice = scanner.nextInt();
+            switch (userChoice) {
+                case 1:
+                    System.out.println("Enter user ID:");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+
+                    System.out.println("Enter user name:");
+                    String uname = scanner.nextLine();
+
+                    System.out.println("Enter contact number:");
+                    int contact = scanner.nextInt();
+                    scanner.nextLine();
+
+                    System.out.println("Enter email:");
+                    String email = scanner.nextLine();
+
+                    User u = new User(id, uname, contact, email);
+                    l.addUser(u);
+                    break;
+                case 2:
+                    System.out.println("Enter the name of the user you want to remove:");
+                    String name = scanner.nextLine();
+                    l.removeUser(name);
+                    break;
+                case 3:
+                    System.out.println("Enter the id of the user you want to Update");//int id, String username, int contact, String email, int balance);
+                    int uid = scanner.nextInt();
+                    System.out.println("Enter the username you want to keep ");
+                    String username = scanner.nextLine();
+
+                    System.out.println("Enter the contact you want to keep");
+                    int phone = scanner.nextInt();
+
+                    System.out.println("Enter the email you want to keep");
+                    String emailAdd = scanner.nextLine();
+                    System.out.println("Enter the balance you want to keep");
+                    int balance = scanner.nextInt();
+                    l.updateUser(uid, username, phone, emailAdd, balance);
+                    break;
+                case 4:
+                    l.viewAllUsers();
+                    break;
+                case 5:
+                    System.out.println("Enter the id of the book");
+                    int bid = scanner.nextInt();
+                    System.out.println("Enter the Book's name");
+                    String bookName = scanner.nextLine();
+                    System.out.println("Enter the author's name");
+                    String authorName = scanner.nextLine();
+                    System.out.println("Enter the Genre of the Book");
+                    String genre = scanner.nextLine();
+                    System.out.println("Enter the no of books available");
+                    int count = scanner.nextInt();
+                    Book b = new Book(bid, bookName, authorName, genre, count);
+                    l.addBook(b);
+                    break;
+                case 6:
+                    System.out.println("Enter the name of the book you want to remove");
+                    String removeName = scanner.nextLine();
+                    l.removeUser(removeName);
+                    break;
+                case 7:
+                    System.out.println("Enter the book id you want to update");
+                    int updateBookId = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Enter the book name  ");
+                    String updatedBookName = scanner.nextLine();
+                    System.out.println("Enter the author name");
+                    String updatedAuthorName = scanner.nextLine();
+                    System.out.println("Enter the Genre");
+                    String updatedGenre = scanner.nextLine();
+                    l.updateBook(updateBookId, updatedBookName, updatedAuthorName, updatedGenre);
+                    break;
+                case 8:
+                    System.out.println("Enter the genre you want to search");
+                    String searchGenre = scanner.next();
+                    l.searchByGenre(searchGenre);
+                    break;
+                case 9:
+                    l.viewAll();
+                    break;
+                case 10:
+                    System.out.println("Enter the name of the book you want to borrow");
+                    String borrowBookName = scanner.next();
+                    System.out.println("Enter the name of the user that wants to borrow the book");
+                    scanner.nextLine();
+                    String borrowingUserName = scanner.next();
+                    System.out.println("Enter the no of duration");
+                    int duration = scanner.nextInt();
+                    scanner.nextLine();
+                    l.borrowBook(borrowBookName, borrowingUserName, duration);
+                    break;
+
+
+                case 12:
+                    System.out.println("Exiting");
+                    running = false;
+                    break;
+            }
+        }
+
+
         Book b6 = new Book(106, "War and Peace", "Leo Tolstoy", "Historical", 5);
         Book b7 = new Book(107, "The Catcher in the Rye", "J.D. Salinger", "Young Adult", 5);
         Book b8 = new Book(108, "The Hobbit", "J.R.R. Tolkien", "Fantasy", 5);
@@ -148,10 +159,6 @@ break;
         Book b20 = new Book(120, "The Brothers Karamazov", "Fyodor Dostoevsky", "Philosophical", 5);
 
 
-        l.addUser(u1);
-        l.addUser(u2);
-        l.addBook(b1);
-        l.addBook(b2);
 //        l.addBook(b3);
 //        l.addBook(b4);
 //        l.addBook(b5);
@@ -191,7 +198,7 @@ break;
 //l.lostBook(u2);
 //l.lostBook(u1,b1);
 //l.viewAll();
-        l.viewAllUsers();
+
 
     }
 }
