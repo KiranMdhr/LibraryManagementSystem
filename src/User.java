@@ -11,6 +11,7 @@ public class User {
     private ArrayList<Book> borrowedBooks;
     private int pricing;
     private int months;
+    private int balance;
 
 
     public User(int uid, String uname, int contact, String email) {
@@ -22,8 +23,21 @@ public class User {
         this.borrowedBooks = new ArrayList<>();
         this.pricing = 200;
         this.months = 1;
+        this.balance = 1000;
 
 
+    }
+    public void setUname(String uname){
+        this.uname = uname;
+    }
+    public void setContact(int contact){
+         this.contact = contact;
+    }
+    public void setEmail(String email){
+        this.email = email;
+    }
+ public void setBalance(int balance){
+         this.balance = balance;
     }
 
     public int getUid() {
@@ -46,16 +60,16 @@ public class User {
     public boolean getHasBooks() {
         return hasBooks;
     }
+
     public int getPricing(){
         return pricing;
     }
     public int getMonths(){
         return months;
     }
-
-//    public void setHasBooks() {
-//        this.hasBooks = hasBooks;
-//    }
+    public int getBalance(){
+        return balance;
+    }
 
     public ArrayList<Book> getBorrowedBooks() {
         return borrowedBooks;
@@ -63,9 +77,10 @@ public class User {
     public void addBook(Book book){
         borrowedBooks.add(book);
 
+
     }
 
     public String toString() {
-        return "User's Name : " + uname + "User Phone No : " + contact + "Email : " + email;
+        return "User's Name : " + uname + "User Phone No : " + contact + "Email : " + email + " " + "balance :" + balance + "borrowedBooks" + borrowedBooks;
     }
 }

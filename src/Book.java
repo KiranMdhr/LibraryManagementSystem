@@ -33,7 +33,7 @@ public class Book {
     public boolean getIsAvailable(){
         return isAvailable;
     }
-public void setBookName(String bookName){
+    public void setBookName(String bookName){
         this.bookName = bookName;
 }
     public void setAuthorName(String authorName){
@@ -50,6 +50,7 @@ public void setBookName(String bookName){
 
 
     public String toString(){
-        return "BookName : " + bookName + "AuthorName : " +authorName + "Genre :"+ genre + "isavailable"+isAvailable ;
+        return "BookName : " + bookName + " " +  "AuthorName : " + " " + authorName + " " + "Genre :"+ genre + " " + "isavailable"+isAvailable ;
+
     }
 }

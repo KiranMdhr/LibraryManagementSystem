@@ -7,7 +7,7 @@ public class Main {
         User u2 = new User(2,"hari",1234341,"hari12@gmail.com");
 
 
-        // Book instances
+
         Book b1 = new Book(101, "To Kill a Mockingbird", "Harper Lee", "Fiction", 12);
         Book b2 = new Book(102, "1984", "George Orwell", "Dystopian", 6);
         Book b3 = new Book(103, "Pride and Prejudice", "Jane Austen", "Romance", 24);
@@ -55,13 +55,22 @@ public class Main {
         l.addBook(b20);
 
 
-        l.borrowBook("The Odyssey",u1);
-        System.out.println(u1.getBorrowedBooks());
+//        l.borrowBook("The Odyssey",u1);
+//        l.borrowBook("The Odyssey",u2);
+//        System.out.println(u1.getBorrowedBooks());
+//        System.out.println(u2.getBorrowedBooks());
+//
+//        l.pricing(u1,4);
+//        l.UpdateBook(102,"hello","kiran","comedy");
+//
+//        l.viewAll();
 
-        l.pricing(u1,4);
-        l.UpdateBook(102,"hello","kiran","comedy");
+//        l.viewAllUsers();
 
-        l.viewAll();
+        l.updateUser(1,"ramesh",98456223,"ramesh@hotmail.com",100);
+        l.viewAllUsers();
+
+
 
     }
 }

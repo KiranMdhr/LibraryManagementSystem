@@ -50,6 +50,17 @@ public class Library {
         }
 
     }
+    public void viewAllUsers() {
+        if (users.isEmpty()) {
+            System.out.println("No Users available");
+        } else {
+            System.out.println("Users available are:");
+            for (User u : users) {
+                System.out.println(u);
+            }
+        }
+
+    }
 
     public void searchByGenre(String g) {
 
@@ -85,6 +96,19 @@ public class Library {
         }
         System.out.println("no book available of that name to delete it");
     }
+    public void removeUser(String name) {
+        Iterator<User> iterator = users.iterator();
+        while (iterator.hasNext()) {
+            User users = iterator.next();
+            if (users.getUname().equalsIgnoreCase(name)) {
+                iterator.remove();
+                System.out.println("Removed Successfully");
+                return;
+            }
+
+        }
+        System.out.println("no book available of that name to delete it");
+    }
 
     public void borrowBook(String bookName, User user) {
         for (Book book : books) {
@@ -104,7 +128,9 @@ public class Library {
         }
 
 
+
     }
+
     public void UpdateBook(int id ,String bookname,String aname,String g){
         for(Book b : books){
             if(b.getBid() == id){
@@ -115,6 +141,23 @@ public class Library {
         }
         System.out.println("ID not found");
 
+    }
+    public void updateUser(int id ,String username,int contact,String email, int balance){
+       boolean userFound = false;
+        for(User u : users){
+            if(u.getUid() == id){
+                u.setUname(username) ;
+                u.setContact(contact); ;
+               u.setEmail(email);
+               u.setBalance(balance);
+               userFound = true;
+                System.out.println("User successfully updated");
+            }
+
+        }
+        if(!userFound){
+            System.out.println("ID not found");
+        }
     }
 
 public void pricing(User user,int month){
