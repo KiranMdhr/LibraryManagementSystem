@@ -209,6 +209,7 @@ public void searchName(String name) {
         System.out.println("no book available of that name to delete it");
     }
 
+
     public void removeUser(String name) {
         Iterator<User> iterator = users.iterator();
         while (iterator.hasNext()) {

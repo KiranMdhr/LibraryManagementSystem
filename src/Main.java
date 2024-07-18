@@ -43,8 +43,8 @@ public class Main {
         System.out.println("Please 1 to  login as admin");
         System.out.println("Please 2 to  login as user");
 
-        int choice = scanner.nextInt();
-        switch (choice) {
+        try{   int choice = scanner.nextInt();
+      switch (choice) {
             case 1:
                 System.out.println("Enter your username");
                 String enteredUserName = scanner.next();
@@ -206,9 +206,13 @@ public class Main {
                                 ReferenceBook refB = new ReferenceBook(refid, refBookName, refAuthorName, refGenre, refCount, noofHours);
                                 l.addRefBook(refB);
                                 break;
+
                             case 15:
                                 System.out.println("Exiting");
                                 running = false;
+                                break;
+                            default:
+                                System.out.println("Invalid Key");
                                 break;
                         }
                     }
@@ -256,10 +260,16 @@ public class Main {
                 } else {
                     System.out.println("You have entered wrong Username and Password");
                     break;
+
+
                 }
+          default:
+              System.out.println("Invalid key");
 
-
-        }
+        }}
+      catch (Exception e){
+          System.out.println("Enter the above keys only");
+      }
 
 
         Book b6 = new Book(106, "War and Peace", "Leo Tolstoy", "Historical", 5);

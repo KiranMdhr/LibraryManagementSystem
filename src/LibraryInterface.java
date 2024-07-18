@@ -10,5 +10,6 @@ public interface LibraryInterface {
     public void removeUser(String name);
     public void borrowBook(String bookName, String userName, int duration);
     public void viewAllReferenceBook();
+    public void addRefBook(ReferenceBook refbook);
 }
 
