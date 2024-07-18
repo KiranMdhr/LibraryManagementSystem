@@ -61,12 +61,10 @@ public class Book {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Book Details:\n");
-        sb.append("--------------------------------------------------------------------------------------------\n");
-        sb.append(String.format("%-20s | %-20s | %-20s | %-10s | %-10s\n", "BookName", "AuthorName", "Genre", "Count", "IsAvailable"));
-        sb.append("--------------------------------------------------------------------------------------------\n");
+
         sb.append(String.format("%-20s | %-20s | %-20s | %-10d | %-10b\n", bookName, authorName, genre, count, isAvailable));
         sb.append("--------------------------------------------------------------------------------------------\n");
         return sb.toString();
     }
+
 }

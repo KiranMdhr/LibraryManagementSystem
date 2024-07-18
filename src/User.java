@@ -12,9 +12,10 @@ public class User {
 //    private int pricing;
 //    private int months;
     private int balance;
+    private String category;
 
 
-    public User(int uid, String uname, int contact, String email) {
+    public User(int uid, String uname, int contact, String email,String category) {
         this.uid = uid;
         this.uname = uname;
         this.contact = contact;
@@ -24,6 +25,7 @@ public class User {
 //        this.pricing = 200;
 //        this.months = 1;
         this.balance = 1000;
+        this.category = category;
 
 
     }
@@ -39,7 +41,13 @@ public class User {
  public void setBalance(int balance){
          this.balance = balance;
     }
+    public void setCategory(String category){
+        this.category = category;
+    }
 
+    public String getCategory() {
+        return category;
+    }
     public int getUid() {
         return uid;
     }
@@ -61,12 +69,7 @@ public class User {
         return hasBooks;
     }
 
-//    public int getPricing(){
-//        return pricing;
-//    }
-//    public int getMonths(){
-//        return months;
-//    }
+
     public int getBalance(){
         return balance;
     }
@@ -79,18 +82,25 @@ public class User {
 
 
     }
+    public void userDetails(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("User Details:\n");
+        sb.append("--------------------------------------------------------------------------------------------\n");
+        sb.append(String.format("%-20s | %-20s | %-30s | %-10s | %-20s | %-20s\n", "Name", "Contact", "Email", "Balance", "Borrowed Books","Category"));
+        sb.append("--------------------------------------------------------------------------------------------\n");
+    }
 
     @Override
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("User Details:\n");
-        sb.append("--------------------------------------------------------------------------------------------\n");
-        sb.append(String.format("%-20s | %-20s | %-30s | %-10s | %-20s\n", "Name", "Contact", "Email", "Balance", "Borrowed Books"));
-        sb.append("--------------------------------------------------------------------------------------------\n");
-        sb.append(String.format("%-20s | %-20s | %-30s | %-10d | %-20s\n", uname, String.valueOf(contact), email, balance, borrowedBooks));
+        sb.append(String.format("%-20s | %-20s | %-30s | %-10d | %-20s | %-20s\n", uname, String.valueOf(contact), email, balance, borrowedBooks , category));
         return sb.toString();
     }
 
+
+    public void showMyBalance(){
+        System.out.println("Your balance is :"+balance);
+    }
 
 }

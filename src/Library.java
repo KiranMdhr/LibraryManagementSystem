@@ -3,18 +3,20 @@ import java.util.HashMap;
 
 import java.util.Iterator;
 
-public class Library {
+public class Library implements  LibraryInterface{
 
     private ArrayList<Book> books;
 
     private ArrayList<User> users;
-    private HashMap<String, String> borrow;
+    private ArrayList<ReferenceBook> reference;
+
 
 
     public Library() {
         this.books = new ArrayList<>();
         this.users = new ArrayList<>();
-        this.borrow = new HashMap<>();
+        this.reference = new ArrayList<>();
+
     }
 
     public void addBook(Book book) {
@@ -31,30 +33,82 @@ public class Library {
             books.add(book);
             System.out.println("Book added successfully.");
         }
-    }
-    public void addUser(User user) {
-        users.add(user);
-    }
-
-    public void searchName(String title) {
+    } public void addRefBook(ReferenceBook refbook) {
         boolean found = false;
-        for (Book book : books) {
-            if (book.getBookName().equalsIgnoreCase(title)) {
-                System.out.println("Book Found" + book);
+        for (ReferenceBook rb : reference) {
+            if (rb.getBid() == refbook.getBid()) {
+                System.out.println("You cannot have the same book id.");
+                rb.setCount(rb.getCount() + refbook.getCount());
                 found = true;
                 break;
             }
         }
         if (!found) {
-            System.out.println("Not found");
+            reference.add(refbook);
+            System.out.println("Book added successfully.");
         }
     }
+
+    public void addUser(User user) {
+        users.add(user);
+    }
+
+//    public void searchName(String title) {
+//        boolean found = false;
+//
+//
+//        for (Book book : books) {
+//            if (book.getBookName().equalsIgnoreCase(title)) {
+//                StringBuilder sb = new StringBuilder();
+//                sb.append("Book Details:\n");
+//                sb.append("--------------------------------------------------------------------------------------------\n");
+//                sb.append(String.format("%-20s | %-20s | %-20s | %-10s | %-10s\n", "BookName", "AuthorName", "Genre", "Count", "IsAvailable"));
+//                sb.append("--------------------------------------------------------------------------------------------\n");
+//                System.out.println(sb);
+//                System.out.println("Book Found" + book);
+//                found = true;
+//                break;
+//            }
+//        }
+//        if (!found) {
+//            System.out.println("Not found");
+//        }
+//    }
+public void searchName(String name) {
+    boolean found = false;
+    System.out.println("Books available are:");
+    StringBuilder sb = new StringBuilder();
+    sb.append("Book Details:\n");
+    sb.append("--------------------------------------------------------------------------------------------\n");
+    sb.append(String.format("%-20s | %-20s | %-20s | %-10s | %-10s\n", "BookName", "AuthorName", "Genre", "Count", "IsAvailable"));
+    sb.append("--------------------------------------------------------------------------------------------\n");
+
+    for (Book b : books) {
+        if (b.getBookName().equalsIgnoreCase(name)) {
+            sb.append(b.toString()).append("\n"); // Append the book details to StringBuilder
+            found = true;
+        }
+    }
+
+    if (found) {
+        System.out.println(sb); // Print the complete StringBuilder content if book is found
+    } else {
+        System.out.println("No book found with this name.");
+    }
+}
+
 
     public void viewAll() {
         if (books.isEmpty()) {
             System.out.println("No books available in the library");
         } else {
             System.out.println("Book available are:");
+            StringBuilder sb = new StringBuilder();
+            sb.append("Book Details:\n");
+            sb.append("--------------------------------------------------------------------------------------------\n");
+            sb.append(String.format("%-20s | %-20s | %-20s | %-10s | %-10s\n", "BookName", "AuthorName", "Genre", "Count", "IsAvailable"));
+            sb.append("--------------------------------------------------------------------------------------------\n");
+            System.out.println(sb);
             for (Book b : books) {
                 System.out.println(b);
             }
@@ -67,6 +121,12 @@ public class Library {
             System.out.println("No Users available");
         } else {
             System.out.println("Users available are:");
+            StringBuilder sb = new StringBuilder();
+            sb.append("User Details:\n");
+            sb.append("--------------------------------------------------------------------------------------------\n");
+            sb.append(String.format("%-20s | %-20s | %-30s | %-10s | %-20s | %-20s\n", "Name", "Contact", "Email", "Balance", "Borrowed Books", "Category"));
+            sb.append("--------------------------------------------------------------------------------------------\n");
+            System.out.println(sb);
             for (User u : users) {
 
                 System.out.println(u);
@@ -74,9 +134,27 @@ public class Library {
         }
 
     }
-
+    public void viewAllReferenceBook() {
+        {
+        if(reference.isEmpty()){
+            System.out.println("There is no reference book available");
+        }
+        else{
+           for( ReferenceBook rb: reference){
+               System.out.println(rb);
+           }
+        }
+        }
+    }
     public void searchUserByName(String userName) {
         boolean found = false;
+        System.out.println("Users available are:");
+        StringBuilder sb = new StringBuilder();
+        sb.append("User Details:\n");
+        sb.append("--------------------------------------------------------------------------------------------\n");
+        sb.append(String.format("%-20s | %-20s | %-30s | %-10s | %-20s | %-20s\n", "Name", "Contact", "Email", "Balance", "Borrowed Books", "Category"));
+        sb.append("--------------------------------------------------------------------------------------------\n");
+        System.out.println(sb);
         for (User u : users) {
             if (u.getUname().equalsIgnoreCase(userName)) {
                 System.out.println(u);
@@ -99,7 +177,12 @@ public class Library {
         while (iterator.hasNext()) {
             Book book = iterator.next();
             if (book.getGenre().equalsIgnoreCase(g)) {
-
+                StringBuilder sb = new StringBuilder();
+                sb.append("Book Details:\n");
+                sb.append("--------------------------------------------------------------------------------------------\n");
+                sb.append(String.format("%-20s | %-20s | %-20s | %-10s | %-10s\n", "BookName", "AuthorName", "Genre", "Count", "IsAvailable"));
+                sb.append("--------------------------------------------------------------------------------------------\n");
+                System.out.println(sb);
                 System.out.println(book);
 
                 found = true;
@@ -205,6 +288,7 @@ public class Library {
                 u.setBalance(balance);
                 userFound = true;
                 System.out.println("User successfully updated");
+
             }
 
         }
@@ -217,8 +301,12 @@ public class Library {
         User foundUser = null;
         Book foundBook = null;
 
-        // Find the user
         for (User u : users) {
+
+            if (u.getBorrowedBooks().isEmpty()) {
+                System.out.println("You havenot borrowed any book from us");
+                break;
+            }
             if (u.getUname().equalsIgnoreCase(userName)) {
                 foundUser = u;
                 break;
@@ -243,7 +331,7 @@ public class Library {
             return;
         }
 
-        // Deduct the fee and update book count
+
         int currentBalance = foundUser.getBalance();
         int deduction = 500;
 
@@ -265,4 +353,12 @@ public class Library {
         }
     }
 
+    public boolean checkBookIdExist(int bid) {
+        for (Book book : books) {
+            if (book.getBid() == bid) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
