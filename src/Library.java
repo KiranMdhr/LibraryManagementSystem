@@ -18,9 +18,20 @@ public class Library {
     }
 
     public void addBook(Book book) {
-        books.add(book);
+        boolean found = false;
+        for (Book b : books) {
+            if (b.getBid() == book.getBid()) {
+                System.out.println("You cannot have the same book id.");
+                b.setCount(b.getCount() + book.getCount());
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            books.add(book);
+            System.out.println("Book added successfully.");
+        }
     }
-
     public void addUser(User user) {
         users.add(user);
     }

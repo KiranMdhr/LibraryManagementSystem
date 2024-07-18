@@ -18,6 +18,9 @@ public class Main {
         l.addUser(u2);
         l.addBook(b1);
         l.addBook(b2);
+        l.addBook(b3);
+        l.addBook(b4);
+        l.addBook(b5);
         boolean running = true;
 
         while (running) {
@@ -89,14 +92,16 @@ public class Main {
                     l.searchUserByName(searchBookName);
                     break;
                 case 6:
+
                     System.out.println("Enter the id of the book");
                     int bid = scanner.nextInt();
+
                     System.out.println("Enter the Book's name");
-                    String bookName = scanner.nextLine();
+                    String bookName = scanner.next();
                     System.out.println("Enter the author's name");
-                    String authorName = scanner.nextLine();
+                    String authorName = scanner.next();
                     System.out.println("Enter the Genre of the Book");
-                    String genre = scanner.nextLine();
+                    String genre = scanner.next();
                     System.out.println("Enter the no of books available");
                     int count = scanner.nextInt();
                     Book b = new Book(bid, bookName, authorName, genre, count);
