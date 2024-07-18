@@ -80,13 +80,17 @@ public class User {
 
     }
 
+    @Override
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("User Details:\n");
         sb.append("--------------------------------------------------------------------------------------------\n");
-        sb.append(String.format("%-20s | %-20s | %-20s | %-10s\n", "Name", "Contact", "Email", "Balance"));
+        sb.append(String.format("%-20s | %-20s | %-30s | %-10s | %-20s\n", "Name", "Contact", "Email", "Balance", "Borrowed Books"));
         sb.append("--------------------------------------------------------------------------------------------\n");
-        sb.append(String.format("%-20s | %-20d | %-20s | %-10d\n", uname, contact, email, balance));
+        sb.append(String.format("%-20s | %-20s | %-30s | %-10d | %-20s\n", uname, String.valueOf(contact), email, balance, borrowedBooks));
         return sb.toString();
     }
+
+
 }

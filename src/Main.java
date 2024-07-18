@@ -138,6 +138,12 @@ public class Main {
                     scanner.nextLine();
                     l.borrowBook(borrowBookName, borrowingUserName, duration);
                     break;
+                case 12:
+                    System.out.println("Enter the name of the user who lost the book");
+                    String lostUser = scanner.next();
+                    System.out.println("Enter the name of the  lost the book");
+                    String lostBook = scanner.next();
+                    l.lostBook(lostUser,lostBook);
 
 
                 case 13:

@@ -63,17 +63,18 @@ public class Library {
         }
 
     }
-    public void searchUserByName(String userName){
+
+    public void searchUserByName(String userName) {
         boolean found = false;
-        for(User u : users){
-            if(u.getUname().equalsIgnoreCase(userName)){
+        for (User u : users) {
+            if (u.getUname().equalsIgnoreCase(userName)) {
                 System.out.println(u);
                 found = true;
             }
 
 
         }
-        if(!found){
+        if (!found) {
             System.out.println("NO user Found of this name");
         }
 
@@ -128,40 +129,39 @@ public class Library {
         System.out.println("no book available of that name to delete it");
     }
 
-    public void borrowBook(String userName, String bookName,int duration) {
+    public void borrowBook(String bookName, String userName, int duration) {
         int finalCost = 200 * duration;
 //        int bookCount = b.getCount();
-     //   int availableBookCount = bookCount - 1;
+        //   int availableBookCount = bookCount - 1;
 //        int calculatedCost = u.getBalance() - finalCost;
 
-for(User u : users){
-    if(u.getUname().equalsIgnoreCase(userName)){
-        for (Book book : books) {
-            if (book.getBookName().equalsIgnoreCase(bookName)) {
-                if (book.getIsAvailable() && u.getBalance() > finalCost) {
-                    u.addBook(book);
-                    System.out.println("book Borrowed");
-                    System.out.println("The amount is" + finalCost);
-                    u.setBalance(u.getBalance() - finalCost);
-                    System.out.println("Your payment hasbeen done");
-                    book.setCount(book.getCount() - 1);
-                    if(book.getCount() < 1)
-                    {book.setIsAvailable(false);}
-                    break;
+        for (User u : users) {
+            if (u.getUname().equalsIgnoreCase(userName)) {
+                for (Book book : books) {
+                    if (book.getBookName().equalsIgnoreCase(bookName)) {
+                        if (book.getIsAvailable() && u.getBalance() > finalCost) {
+                            u.addBook(book);
+                            System.out.println("book Borrowed");
+                            System.out.println("The amount is" + finalCost);
+                            u.setBalance(u.getBalance() - finalCost);
+                            System.out.println("Your payment hasbeen done");
+                            book.setCount(book.getCount() - 1);
+                            if (book.getCount() < 1) {
+                                book.setIsAvailable(false);
+                            }
+                            break;
 
-                } else {
+                        } else {
 
-                    System.out.println("You cannot borrow the book");
+                            System.out.println("You cannot borrow the book");
+                        }
+                    } else {
+                        System.out.println("User not found");
+                    }
+
                 }
             }
-            else{
-                System.out.println("User not found");
-            }
-
         }
-    }
-}
-
 
 
     }
@@ -202,32 +202,56 @@ for(User u : users){
         }
     }
 
-    public void lostBook(User u, Book lostBook) {
-        int currentBalance = u.getBalance();
-        int deduction = 500;
-        if (currentBalance < 500) {
+    public void lostBook(String userName, String lostBookName) {
+        User foundUser = null;
+        Book foundBook = null;
 
-            u.setBalance(currentBalance - deduction);
-            System.out.println("You don't have sufficient balance please recharge");
-            int currentBookCount = lostBook.getCount();
-            int finalCount = currentBookCount - 1;
-            for(Book b: books){
-                {
-                    if(b.getBookName().equalsIgnoreCase(lostBook.getBookName())){
-                        b.setCount(finalCount);
-                    }
-                }
-
-
+        // Find the user
+        for (User u : users) {
+            if (u.getUname().equalsIgnoreCase(userName)) {
+                foundUser = u;
+                break;
             }
+        }
 
+        if (foundUser == null) {
+            System.out.println("User not found.");
+            return;
+        }
+
+        // Find the lost book
+        for (Book b : books) {
+            if (b.getBookName().equalsIgnoreCase(lostBookName)) {
+                foundBook = b;
+                break;
+            }
+        }
+
+        if (foundBook == null) {
+            System.out.println("Book not found.");
+            return;
+        }
+
+        // Deduct the fee and update book count
+        int currentBalance = foundUser.getBalance();
+        int deduction = 500;
+
+        if (currentBalance < deduction) {
+            System.out.println("You don't have sufficient balance to cover the lost book fee.");
         } else {
-            u.setBalance(currentBalance - deduction);
+            foundUser.setBalance(currentBalance - deduction);
+            System.out.println("Lost book fee deducted from your balance.");
+
+            // Decrease book count
+            int currentBookCount = foundBook.getCount();
+            if (currentBookCount > 0) {
+                foundBook.setCount(currentBookCount - 1);
+                foundBook.setIsAvailable(currentBookCount - 1 > 0); // Update availability status
+                System.out.println("Book count decreased.");
+            } else {
+                System.out.println("No more copies of this book available.");
+            }
         }
     }
 
-//    public void pricing(User user, int month) {
-//        System.out.println("The price of the book is" + user.getPricing() * month);
-//
-//    }
 }
